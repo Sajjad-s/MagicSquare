@@ -1,3 +1,9 @@
+import org.junit.Assert;
+import org.junit.Test;
+import static org.junit.Assert.assertArrayEquals;
+import java.util.Scanner;
+
+
 import java.util.Scanner;
 
 public class Main {
@@ -7,7 +13,7 @@ public class Main {
         System.out.println("Enter the 3x3 Matrix");
         int[] array = main.getInputArray();
         showArray(array);
-        main.checkSquare(array);
+        System.out.println("The answer is: " + main.checkSquare(array));
 
     }
 
@@ -47,37 +53,37 @@ public class Main {
 
     public int checkSquare(int[] inputArray) {
         int[][] baseArrays = {
-                {8, 1, 6,
-                 3, 5, 7,
-                 4, 9, 2},
+                        {8, 1, 6,
+                         3, 5, 7,
+                         4, 9, 2},
 
-                {6, 1, 8,
-                 7, 5, 3,
-                 2, 9, 4},
+                        {6, 1, 8,
+                         7, 5, 3,
+                         2, 9, 4},
 
-                {4, 9, 2,
-                 3, 5, 7,
-                 8, 1, 6},
+                        {4, 9, 2,
+                         3, 5, 7,
+                         8, 1, 6},
 
-                {2, 9, 4,
-                 7, 5, 3,
-                 6, 1, 8},
+                        {2, 9, 4,
+                         7, 5, 3,
+                         6, 1, 8},
 
-                {8, 3, 4,
-                 1, 5, 9,
-                 6, 7, 2},
+                        {8, 3, 4,
+                         1, 5, 9,
+                         6, 7, 2},
 
-                {4, 3, 8,
-                 9, 5, 1,
-                 2, 7, 6},
+                        {4, 3, 8,
+                         9, 5, 1,
+                         2, 7, 6},
 
-                {6, 7, 2,
-                 1, 5, 9,
-                 8, 3, 4},
+                        {6, 7, 2,
+                         1, 5, 9,
+                         8, 3, 4},
 
-                {2, 7, 6,
-                 9, 5, 1,
-                 4, 3, 8}
+                        {2, 7, 6,
+                         9, 5, 1,
+                         4, 3, 8}
 
 
         };
@@ -85,14 +91,19 @@ public class Main {
         for (int i = 0; i < 8; i++) {
             int difference = 0;
             for (int j = 0; j < 9; j++) {
-                difference += Math.abs( inputArray[j] - baseArrays[i][j]);
+                difference += Math.abs(inputArray[j] - baseArrays[i][j]);
                 if (difference < best) best = difference;
             }
 
         }
-        System.out.println("The Answer is: " + best);
+        return best;
+    }
 
-
-        return 0;
+    @Test
+    public void positiveTest() {
+        Main main = new Main();
+        int[] array = {1, 7, 6, 9, 5, 1, 4, 3, 8};
+        int result = main.checkSquare(array);
+        Assert.assertEquals(1,result);
     }
 }
